@@ -1,4 +1,4 @@
-package bookpt1;
+package app.src.main.java.bookpt1;
 import java.time.LocalDate;
 
 public class Book {
