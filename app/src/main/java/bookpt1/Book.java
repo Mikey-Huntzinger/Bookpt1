@@ -23,22 +23,19 @@ public class Book {
             return title + " by " + author + ", ISBN: " + isbn;
         }
 
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Book book = (Book) o;
-            return pageCount == book.pageCount &&
-                java.util.Objects.equals(author, book.author) &&
-                java.util.Objects.equals(isbn, book.isbn) &&
-                java.util.Objects.equals(subject, book.subject) &&
-                java.util.Objects.equals(title, book.title);
-        }
+    // Equals method excluding the date
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        Book book = (Book) object;
+        return AUTHOR_ == book.AUTHOR_ && ISBN_ == book.ISBN_ && PAGE_COUNT_ == book.PAGE_COUNT_ && SUBJECT_TITLE_ == book.SUBJECT_TITLE_ && pageCount == book.pageCount && java.util.Objects.equals(author, book.author) && java.util.Objects.equals(isbn, book.isbn) && java.util.Objects.equals(subject, book.subject) && java.util.Objects.equals(title, book.title);
+    }
+    //HashCode method excluding the date
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), AUTHOR_, ISBN_, PAGE_COUNT_, SUBJECT_TITLE_, author, isbn, pageCount, subject, title);
+    }
 
-        public int hashCode() {
-            return java.util.Objects.hash(author, isbn, pageCount, subject, title);
-        }
-        
-        // Getters and Setters
+    // Getters and Setters
         public String getAuthor() {
             return author;
         }
